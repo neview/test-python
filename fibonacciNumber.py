@@ -412,25 +412,153 @@ import os
 # - 生成器
 
 # 生成Fibonacci序列的生成器
+#
+# def fib(n):
+#     a, b = 0, 1
+#     for i in range(n):
+#         a, b = b, a + b
+#         yield a
+#
+# def main():
+#     # # 用range创建数值列表
+#     # list1 = list(range(1,11))
+#     # print(list1)
+#     #
+#     # # 生成表达式
+#     # list2 = [x * x for x in range(1,11)]
+#     # print(list2)
+#     # list3 = [m + n for m in 'ABCDEFG' for n in '12345']
+#     # print(list3)
+#
+#     # 生成器
+#     gen = (m+n for m in 'ABCDEFG' for n in '12345')
+#     print(gen)
+#     for elem in gen:
+#         print(elem,end=' ')
+#     print()
+#     gen = fib(20)
+#     print(gen)
+#     for elem in gen:
+#         print(elem,end=' ')
+#     print()
+#
+# main()
 
-def fib(n):
-    a, b = 0, 1
-    for i in range(n):
-        a, b = b, a + b
-        yield a
+# # 双色球随机选号程序
+# from random import randrange, randint, sample
+#
+# def random_select():
+#     red_balls = [x for x in range(1,34)]
+#     selected_balls = []
+#     for _ in range(6):
+#         index = randrange(len(red_balls))
+#         selected_balls.append(red_balls[index])
+#         del red_balls[index]
+#     selected_balls.sort()
+#     selected_balls.append(randint(1,16))
+#     return selected_balls
+#
+# def main():
+#     num = int(input('输入几注'))
+#     for i in range(num):
+#         deplay(random_select())
+#
+# def deplay(obj):
+#     for index,bell in enumerate(obj):
+#         if index == len(obj)-1:
+#             print('|',end=' ')
+#         print('%02d' % bell,end=' ')
+#     print()
+# main()
 
-def main():
-    # 用range创建数值列表
-    list1 = list(range(1,11))
-    print(list1)
+# 输入学生考试成绩计算平均分
 
-    # 生成表达式
-    list2 = [x * x for x in range(1,11)]
-    print(list2)
-    list3 = [m + n for m in 'ABCDEFG' for n in '12345']
-    print(list3)
+# import os
+# import time
+#
+#
+# def main():
+#     str = 'Welcome to 1000 Phone Chengdu Campus      '
+#     while True:
+#         print(str)
+#         time.sleep(0.2)
+#         str = str[1:] + str[0:1]
+#         # for Windows use os.system('cls') instead
+#         # os.system('clear')
+#         os.system('cls')
+#
+#
+# if __name__ == '__main__':
+#     main()
 
-main()
+# 定义和使用集合
+#
+# def main():
+#     set1 = {1,2,3,3,3,2}
+#     print(set1)
+#     print('length =',len(set1))
+#     set2 = set(range(1,10))
+#     print(set2)
+#     set1.add(4)
+#     set1.add(5)
+#     set2.update([11,12])
+#     print(set1)
+#     print(set2)
+#     set2.discard(5)
+#
+#     if 4 in set2:
+#         set2.remove(4)
+#     print('--',set2)
+#
+#     for elem in set2:
+#         print(elem ** 2,end=' ')
+#     print()
+#
+#     set3 = set((1,2,3,3,2,1))
+#     print(set3)
+#     print(set3.pop())
+#     print(set3)
+#
+# main()
+
+# 集合的常用操作
+# - 交集
+# - 并集
+# - 差集
+# - 子集
+# - 超集
+
+
+# def main():
+#     set1 = set(range(1,7))
+#     print(set1)
+#     set2 = set(range(2,11,2))
+#     print(set2)
+#     set3 = set(range(1,5))
+#     print('交集',set1 & set2)
+#     print('并集',set1 | set2)
+#     print('差集-即输出存在于set1中但不存在于set2中的元素',set1 - set2)
+#     print('对称差集-输出存在于set1或set2中但不同时存在的元素',set1 ^ set2)
+#     print('判断set2是否为set1的子集，如果是则输出True，否则输出False',set2 <= set1)
+#     print('判断set3是否为set1的子集，如果是则输出True，否则输出False',set3 <= set1)
+#     print('判断set1是否为set2的超集，如果是则输出True，否则输出False',set1 >= set2)
+#     print('判断set1是否为set3的超集，如果是则输出True，否则输出False',set1 >= set3)
+#
+# if __name__ == '__main__':
+#     main()
+
+
+# 井字棋游戏
+
+
+
+
+
+
+
+
+
+
 
 
 
