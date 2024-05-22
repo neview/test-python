@@ -550,6 +550,8 @@ import os
 
 # 井字棋游戏
 
+def print_board(board):
+    print(board['TL']+'|'+board['TM']+board['TR'])
 
 
 
