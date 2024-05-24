@@ -549,31 +549,157 @@ import os
 
 
 # 井字棋游戏
+# import os
+#
+# def print_board(board):
+#     print(board['TL'] + '|' + board['TM'] + '|' + board['TR'])
+#     print('-+-+-')
+#     print(board['ML'] + '|' + board['MM'] + '|' + board['MR'])
+#     print('-+-+-')
+#     print(board['BL'] + '|' + board['BM'] + '|' + board['BR'])
+#
+#
+# def main():
+#     init_board = {
+#         'TL': ' ', 'TM': ' ', 'TR': ' ',
+#         'ML': ' ', 'MM': ' ', 'MR': ' ',
+#         'BL': ' ', 'BM': ' ', 'BR': ' '
+#     }
+#     begin = True
+#     while begin:
+#         curr_board = init_board.copy()
+#         begin = False
+#         turn = 'x'
+#         counter = 0
+#         os.system('cls')
+#         print_board(curr_board)
+#         while counter < 9:
+#             move = input('轮到%s走棋，请输入位置： ' % turn)
+#             if curr_board[move] == ' ':
+#                 counter +=1
+#                 curr_board[move] = turn
+#                 if turn == 'x':
+#                     turn = 'o'
+#                 else:
+#                     turn = 'x'
+#             os.system('cls')
+#             print_board(curr_board)
+#         choice = input('在玩一句？(yes|no)')
+#         begin = choice == 'yes'
+#
+# if __name__ == '__main__':
+#     main()
 
-def print_board(board):
-    print(board['TL']+'|'+board['TM']+board['TR'])
+# 元组的定义和使用
+#
+# def main():
+#     # 定义元组
+#     t = ('张三',38,True,'北京')
+#     print(t)
+#     # 获取元组中的元素
+#     print(t[0])
+#     print(t[1])
+#     print(t[2])
+#     print(t[3])
+#     # 遍历元组中的值
+#     for member in t:
+#         print(member)
+#     # 重新给元组赋值
+#     # t[0] = '李四'
+#     # 变量t重新引用了新的元组 原来的元组被垃圾回收
+#     t = ('王五',20,True,'上海')
+#     print(t)
+#     # 元组和列表的转换
+#     person = list(t)
+#     print(person)
+#     person[0] = '李小龙'
+#     person[1] = 25
+#     print(person)
+#     fruits_list = ['apple','banana','orange']
+#     fruits_tuple = tuple(fruits_list)
+#     print(fruits_tuple)
+#     print(fruits_list[1])
+#
+# if __name__ == '__main__':
+#     main()
+
+# 输出10行的杨辉三角 - 二项式的n次方展开系数
+# 1
+# 1 1
+# 1 2 1
+# 1 3 3 1
+# 1 4 6 4 1
+# ... ... ...
 
 
+# def main():
+#     num = int(input("Enter a number: "))
+#     yh = [[]] * num
+#     for row in range(len(yh)):
+#         yh[row] = [None] * (row + 1)
+#         for col in range(len(yh[row])):
+#             if col == 0 or col == row:
+#                 yh[row][col] = 1
+#             else:
+#                 yh[row][col] = yh[row-1][col] + yh[row-1][col-1]
+#             print(yh[row][col],end='\t')
+#         print()
+#
+# if __name__ == '__main__':
+#     main()
 
+# class Test:
+#
+#     def __init__(self, foo):
+#         self.__foo = foo
+#
+#     def __bar(self):
+#         print(self.__foo)
+#         print('__bar')
+#
+#
+# def main():
+#     test = Test('hello')
+#     test._Test__bar()
+#     print(test._Test__foo)
+#
+#
+# if __name__ == "__main__":
+#     main()
 
+# 修一个游泳池 半径(以米为单位)在程序运行时输入 游泳池外修一条3米宽的过道
+# 过道的外侧修一圈围墙 已知过道的造价为25元每平米 围墙的造价为32.5元每米
+# 输出围墙和过道的总造价分别是多少钱(精确到小数点后2位)
 
+import math
 
+class Circle(object):
 
+    def __init__(self,radius):
+        self.radius = radius
 
+    @property
+    def radius(self):
+        return self._radius
 
+    @radius.setter
+    def radius(self,radius):
+        self._radius = radius if radius > 0 else 0
 
+    @property
+    def perimeter(self):
+        return 2 * math.pi * self._radius
 
+    @property
+    def area(self):
+        return math.pi * self._radius * self._radius
 
-
-
-
-
-
-
-
-
-
-
+if __name__ == '__main__':
+    radius = float(input("Enter radius: "))
+    small = Circle(radius)
+    big = Circle(radius+3)
+    print('围墙的造假为：￥$.1f元' % (big.perimeter * 115))
+    print('过道的造假为：￥%.1f元' % ((big.area - small.area) * 65))
 
 
 
