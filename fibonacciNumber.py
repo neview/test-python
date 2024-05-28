@@ -745,6 +745,178 @@ import os
 
 # 面向对象版本的猜数字游戏
 
+# from random import randint
+#
+# class FibonacciNumber(object):
+#     def __init__(self):
+#         self._answer = None
+#         self._counter = None
+#         self._hint = None
+#
+#     def reset(self):
+#         self._answer = randint(1,100)
+#         print(self._answer)
+#         self._counter = 0
+#         self._hint = None
+#
+#     def jisuan(self,obj):
+#         self._counter +=1
+#         if self._counter > 3:
+#             return False
+#         if obj > self._answer:
+#             return 'max'
+#         elif obj < self._answer:
+#             return 'min'
+#         elif obj == self._answer:
+#             return 'success'
+#
+#     @property
+#     def answer(self):
+#         return self._answer
+#
+#     @property
+#     def count(self):
+#         return self._counter
+#
+#
+# fibonacciNumber = FibonacciNumber()
+# fibonacciNumber.reset()
+# while True:
+#     num = int(input('num:'))
+#     if not fibonacciNumber.jisuan(num):
+#         print('over')
+#     else:
+#         print(fibonacciNumber.jisuan(num))
+
+# 另一种创建类的方式
+
+# def bar(self,name):
+#     self._name = name
+#
+# def foo(self,course_name):
+#     print('%s正在学习%s.' % (self._name,course_name))
+#
+# def main():
+#     Student = type('Student',(object,),dict(__init__=bar,study = foo))
+#     sud1 = Student('张三')
+#     sud1.study('javascript')
+#
+# if __name__ == '__main__':
+#     main()
+
+# 定义和使用学生类
+
+# def _foo():
+#     print('test')
+#
+# class Student(object):
+#     def __init__(self, name,age):
+#         self.name = name
+#         self.age = age
+#
+#     def study(self,course_name):
+#         print('%s正在学习%s.' % (self.name,course_name))
+#
+#     def watch_av(self):
+#         if self.age < 18:
+#             print('min')
+#         else:
+#             print('max')
+#
+# def main():
+#     stu1 = Student('张三',38)
+#     stu1.study('javascript')
+#     stu1.watch_av()
+#     stu2 = Student('王大锤',15)
+#     stu2.study('java')
+#     stu2.watch_av()
+#
+# if __name__ == '__main__':
+#     main()
+
+# 定义和使用矩形类
+
+# class Rect(object):
+#     """矩形类"""
+#
+#     def __init__(self, width=0, height=0):
+#         """初始化方法"""
+#         self.__width = width
+#         self.__height = height
+#
+#     def perimeter(self):
+#         """计算周长"""
+#         return (self.__width + self.__height) * 2
+#
+#     def area(self):
+#         """计算面积"""
+#         return self.__width * self.__height
+#
+#     def __str__(self):
+#         """矩形对象的字符串表达式"""
+#         return '矩形[%f,%f]' % (self.__width, self.__height)
+#
+#     def __del__(self):
+#         """析构器"""
+#         print('销毁矩形对象')
+#
+#
+# if __name__ == '__main__':
+#     rect1 = Rect()
+#     print(rect1)
+#     print(rect1.perimeter())
+#     print(rect1.area())
+#     rect2 = Rect(3.5, 4.5)
+#     print(rect2)
+#     print(rect2.perimeter())
+#     print(rect2.area())
+
+# 多重继承
+# - 菱形继承(钻石继承)
+# - C3算法(替代DFS的算法)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
