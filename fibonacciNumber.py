@@ -875,80 +875,420 @@ import os
 # - 菱形继承(钻石继承)
 # - C3算法(替代DFS的算法)
 
-class A(object):
+# class A(object):
+#
+#     def foo(self):
+#         print('foo of A')
+#
+# class B(A):
+#     pass
+#
+# class C(A):
+#     def foo(self):
+#         print('foo fo c')
+#
+# class D(B,C):
+#     pass
+#
+# class E(D):
+#
+#     def foo(self):
+#         print('foo fo d')
+#         super().foo()
+#         super(B,self).foo()
+#         print('-----')
+#         super(C,self).foo()
+#
+# if __name__ == '__main__':
+#     d = D()
+#     d.foo()
+#     e = E()
+#     e.foo()
 
-    def foo(self):
-        print('foo of A')
+# 对象之间的关联关系
 
-class B(A):
-    pass
+# from math import sqrt
+#
+#
+# class Point(object):
+#
+#     def __init__(self, x=0, y=0):
+#         self._x = x
+#         self._y = y
+#
+#     def move_to(self, x, y):
+#         self._x = x
+#         self._y = y
+#
+#     def move_by(self, dx, dy):
+#         self._x += dx
+#         self._y += dy
+#
+#     def distance_to(self, other):
+#         dx = self._x - other._x
+#         dy = self._y - other._y
+#         return sqrt(dx ** 2 + dy ** 2)
+#
+#     def __str__(self):
+#         return '(%s, %s)' % (str(self._x), str(self._y))
+#
+#
+# class Line(object):
+#
+#     def __init__(self, start=Point(0, 0), end=Point(0, 0)):
+#         self._start = start
+#         self._end = end
+#
+#     @property
+#     def start(self):
+#         return self._start
+#
+#     @start.setter
+#     def start(self, start):
+#         self._start = start
+#
+#     @property
+#     def end(self):
+#         return self.end
+#
+#     @end.setter
+#     def end(self, end):
+#         self._end = end
+#
+#     @property
+#     def length(self):
+#         return self._start.distance_to(self._end)
+#
+#
+# if __name__ == '__main__':
+#     p1 = Point(3, 5)
+#     print(p1)
+#     p2 = Point(-2, -1.5)
+#     print(p2)
+#     line = Line(p1, p2)
+#     print(line.length)
+#     line.start.move_to(2, 1)
+#     line.end = Point(1, 2)
+#     print(line.length)
 
-class C(A):
-    def foo(self):
-        print('foo fo c')
+# 属性的使用
+# - 访问器/修改器/删除器
+# - 使用__slots__对属性加以限制
 
-class D(B,C):
-    pass
-
-class E(D):
-
-    def foo(self):
-        print('foo fo d')
-        super().foo()
-        super(B,self).foo()
-        print('-----')
-        super(C,self).foo()
-
-if __name__ == '__main__':
-    d = D()
-    d.foo()
-    e = E()
-    e.foo()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+# class Car(object):
+#
+#     __slots__ = ('_brand','_max_speed')
+#
+#     def __init__(self,brand,max_speed):
+#         self._brand = brand
+#         self._max_speed = max_speed
+#
+#     @property
+#     def brand(self):
+#         return self._brand
+#
+#     @brand.setter
+#     def brand(self,brand):
+#         self._brand = brand
+#
+#     @brand.deleter
+#     def brand(self):
+#         del self._brand
+#
+#     @property
+#     def max_speed(self):
+#         return self._max_speed
+#
+#     @max_speed.setter
+#     def max_speed(self,max_speed):
+#         if max_speed < 0:
+#             raise ValueError('Invalid max speed for car')
+#         self._max_speed = max_speed
+#
+#     def __str__(self):
+#         return 'Car: [品牌=%s, 最高时速=%d]' % (self._brand, self._max_speed)
+#
+# car = Car('QQ',120)
+# print(car)
+# # ValueError
+# # car.max_speed = -100
+# car.max_speed = 320
+# car.brand = 'Bemz'
+# # 使用 slots 属性限制后下面的代码将产生异常
+# # car.current_speed = 80
+# print(car)
+# # 如果提供了删除器可以执行下面的代码
+# # del car.brand
+# print(Car.brand)
+# print(Car.brand.fget)
+# print(Car.brand.fset)
+# print(Car.brand.fdel)
+# # 通过上面的代码帮助学生理解之前提到的包装器的概念
+# # Python中有很多类似的语法糖后面还会出现这样的东西
 
 
+# 属性的使用
+# - 使用已有方法定义访问器/修改器/删除器
+
+# class Car(object):
+#
+#     def __init__(self, brand, max_speed):
+#         self.set_brand(brand)
+#         self.set_max_speed(max_speed)
+#
+#     def get_brand(self):
+#         return self._brand
+#
+#     def set_brand(self, brand):
+#         self._brand = brand
+#
+#     def get_max_speed(self):
+#         return self._max_speed
+#
+#     def set_max_speed(self, max_speed):
+#         if max_speed < 0:
+#             raise ValueError('Invalid max speed for car')
+#         self._max_speed = max_speed
+#
+#     def __str__(self):
+#         return 'Car: [品牌=%s, 最高时速=%d]' % (self._brand, self._max_speed)
+#
+#     # 用已有的修改器和访问器定义属性
+#     brand = property(get_brand, set_brand)
+#     max_speed = property(get_max_speed, set_max_speed)
+#
+#
+# car = Car('QQ', 120)
+# print(car)
+# # ValueError
+# # car.max_speed = -100
+# car.max_speed = 320
+# car.brand = "Benz"
+# print(car)
+# print(Car.brand)
+# print(Car.brand.fget)
+# print(Car.brand.fset)
+# print(car.brand)
+
+# 对象之间的依赖关系和运算符重载
+
+# class Car(object):
+#     def __init__(self,brand,max_speed):
+#         self._brand=brand
+#         self._max_speed=max_speed
+#         self._current_speed=0
+#
+#     @property
+#     def brand(self):
+#         return self._brand
+#
+#     def accelerate(self,delta):
+#         self._current_speed+=delta
+#         if self._current_speed>self._max_speed:
+#             self._current_speed = self._max_speed
+#
+#     def brake(self):
+#         self._current_speed=0
+#
+#     def __str__(self):
+#         return '%s当前时速%d' % (self._brand, self._current_speed)
+#
+# class Student(object):
+#     def __init__(self,name,age):
+#         self._name = name
+#         self._age = age
+#
+#     @property
+#     def name(self):
+#         return self._name
+#
+#     # 学生和车之间存在依赖关系 - 学生使用了汽车
+#     def drive(self,car):
+#         print('%s驾驶着%s欢快的行驶在去西天的路上' % (self._name, car._brand))
+#         car.accelerate(30)
+#         print(car)
+#         car.accelerate(50)
+#         print(car)
+#         car.accelerate(50)
+#         print(car)
+#
+#     def study(self,course_name):
+#         print('%s正在学习%s.' % (self._name, course_name))
+#
+#     def watch_av(self):
+#         if self._age < 18:
+#             print('%s只能观看《熊出没》.' % self._name)
+#         else:
+#             print('%s正在观看岛国爱情动作片.' % self._name)
+#
+#     # 重载大于(>)运算符
+#     def __gt__(self,other):
+#         return self._age > other._age
+#
+#     #重载小于(<)运算符
+#     def __lt__(self,other):
+#         return self._age < other._age
+#
+# if __name__ == '__main__':
+#     stu1 = Student('骆昊', 38)
+#     stu1.study('Python程序设计')
+#     stu1.watch_av()
+#     stu2 = Student('王大锤', 15)
+#     stu2.study('思想品德')
+#     stu2.watch_av()
+#     car = Car('QQ', 120)
+#     stu2.drive(car)
+#     print(stu1 > stu2)
+#     print(stu1 < stu2)
+
+# 抽象类 / 方法重写 / 多态
+# 实现一个工资结算系统 公司有三种类型的员工
+# - 部门经理固定月薪12000元/月
+# - 程序员按本月工作小时数每小时100元
+# - 销售员1500元/月的底薪加上本月销售额5%的提成
+# 输入员工的信息 输出每位员工的月薪信息
+
+# from abc import ABCMeta, abstractmethod
+#
+# class Employee(object,metaclass=ABCMeta):
+#     def __init__(self,name):
+#         self.name = name
+#
+#     @property
+#     def name(self):
+#         return self._name
+#
+#     @abstractmethod
+#     def get_salary(self):
+#         pass
+#
+# class Manager(Employee):
+#     def __init__(self,name):
+#         super().__init__(name)
+#
+#     def get_salary(self):
+#         return 12000
+#
+# class Programmer(Employee):
+#     def __init__(self,name):
+#         super().__init__(name)
+#
+#     def set_working_hour(self,working_hour):
+#         self.working_hour = working_hour
+#
+#     def get_salary(self):
+#         return 100 * self.working_hour
+#
+# class Salesman(Employee):
+#     def __init__(self,name):
+#         super().__init__(name)
+#
+#     def set_sales(self,sales):
+#         self.sales = sales
+#
+#     def get_salary(self):
+#         return 1500+ self.sales * 0.05
+#
+# if __name__ == '__main__':
+#     emps = [Manager('张三'),Programmer('李四'),Salesman('王五')]
+#     for emp in emps:
+#         if isinstance(emp, Programmer):
+#             working_hour = int(input('请输入%s本月工作时间: ' % emp.name))
+#             emp.set_working_hour(working_hour)
+#         elif isinstance(emp, Salesman):
+#             sales = float(input('请输入%s本月销售额: ' % emp.name))
+#             emp.set_sales(sales)
+#         print('%s本月月薪为: ￥%.2f元' % (emp.name, emp.get_salary()))
+
+# 多重继承
+# - 通过多重继承可以给一个类的对象具备多方面的能力
+# - 这样在设计类的时候可以避免设计太多层次的复杂的继承关系
+
+# class Father(object):
+#     def __init__(self,name):
+#         self._name = name
+#
+#     def gamble(self):
+#         print('%s在打麻将' % self._name)
+#
+#     def eat(self):
+#         print('%s在大吃大喝' % self._name)
+#
+# class Monk(object):
+#     def __init__(self,name):
+#         self._name = name
+#
+#     def eat(self):
+#         print('%s在吃斋.' % self._name)
+#
+#     def chant(self):
+#         print('%s在念经.' % self._name)
+#
+# class Musician(object):
+#
+#     def __init__(self, name):
+#         self._name = name
+#
+#     def eat(self):
+#         print('%s在细嚼慢咽.' % self._name)
+#
+#     def play_piano(self):
+#         print('%s在弹钢琴.' % self._name)
+#
+# class Son(Father, Monk, Musician):
+#
+#     def __init__(self, name):
+#         Father.__init__(self, name)
+#         Monk.__init__(self, name)
+#         Musician.__init__(self, name)
+#
+#
+# son = Son('王大锤')
+# son.gamble()
+# # 调用继承自Father的eat方法
+# son.eat()
+# son.chant()
+# son.play_piano()
+
+# from abc import ABCMeta, abstractmethod
+#
+# class Pet(object, metaclass=ABCMeta):
+#     def __int__(self,nickname):
+#         self._nickname = nickname
+#
+#     @abstractmethod
+#     def make_voice(self):
+#         pass
+#
+# class Dog(Pet):
+#     def make_voice(self):
+#         print("I am a Dog")
+#
+# class  Cat(Pet):
+#     def make_voice(self):
+#         print("I am a Cat")
+#
+# def main():
+#     pets = [Dog('旺财'), Cat('凯迪'),Dog('大黄')]
+#     for pet in pets:
+#         pet.make_voice()
+#
+# if __name__ == '__main__':
+#     main()
+
+# 运算符重载 - 自定义分数类
+
+class on(object):
+    def __init__(self,AA):
+        self._AA = AA
+
+    def __add__(self,other):
+        return self._AA + other._AA
 
 
-
-
-
-
-
-
+A1 = on(1)
+A2 = on(2)
+print(A1 + A2)
 
 
 
