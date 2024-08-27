@@ -1593,18 +1593,29 @@ from pygame.draw import lines
 #         print('存在')
 
 #  try 异常捕获
-input_again = True
+# input_again = True
+#
+# while input_again:
+#     try:
+#         a = int(input('a='))
+#         b = int(input('b='))
+#         print('%d / %d = %f' % (a, b, a / b))
+#     except ValueError:
+#         print('数不对')
+#     except ZeroDivisionError:
+#         print('除数不能为0')
 
-while input_again:
+# 异常
+bool = True
+
+while bool:
     try:
-        a = int(input('a='))
-        b = int(input('b='))
-        print('%d / %d = %f' % (a, b, a / b))
-    except ValueError:
-        print('数不对')
-    except ZeroDivisionError:
-        print('除数不能为0')
-
+        a = int(input("Enter a number: "))
+        b = int(input("Enter another number: "))
+        print('%d / %d = %s' % (a, b, a/b))
+        bool = False
+    except (ValueError,ZeroDivisionError) as msg:
+        print(msg)
 
 
 
