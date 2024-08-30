@@ -163,6 +163,7 @@ import time
 import shutil
 import os
 from fileinput import filename
+from stat import filemode
 
 from pygame.draw import lines
 
@@ -1606,32 +1607,95 @@ from pygame.draw import lines
 #         print('除数不能为0')
 
 # 异常
-bool = True
+# bool = True
+#
+# while bool:
+#     try:
+#         a = int(input("Enter a number: "))
+#         b = int(input("Enter another number: "))
+#         print('%d / %d = %s' % (a, b, a/b))
+#         bool = False
+#     except (ValueError,ZeroDivisionError) as msg:
+#         print(msg)
 
-while bool:
-    try:
-        a = int(input("Enter a number: "))
-        b = int(input("Enter another number: "))
-        print('%d / %d = %s' % (a, b, a/b))
-        bool = False
-    except (ValueError,ZeroDivisionError) as msg:
-        print(msg)
+# 读取文件
+# import time
+# import sys
+#
+# filenme = input('请输入文件名')
+# try:
+#     with open(filenme) as f:
+#         lines = f.readlines()
+# except FileNotFoundError as msg:
+#     print('无法打开文件:',filenme)
+#     print(msg)
+# except UnicodeDecodeError as msg:
+#     print('非文本文件无法解码')
+#     sys.exit()
+# else:
+#     for line in lines:
+#         print(line.rstrip())
+#         time.sleep(0.5)
+# finally:
+#     print('成功失败都执行')
 
 
+# 多种方式读取文件
+import time
 
+# filename = 'aa.txt'
+# def main():
+#     # with open(filename, 'r',encoding='utf-8') as f:
+#     #     print(f.read())
+#
+#     # with open(filename, 'r') as f:
+#     #     for line in f:
+#     #         print(line)
+#
+#     with open(filename) as f:
+#         lines = f.readlines()
+#     print(lines)
+#
+# main()
 
+# 写入文件
+# from math import sqrt
+#
+# def is_prime(n):
+#     for factor in range(2, int(sqrt(n))+1):
+#         if n % factor == 0:
+#             return False
+#     return True
+#
+# with open('aa.txt','w') as f:
+#     for num in range(2,100):
+#         if is_prime(num):
+#             f.write(str(num)+'\n')
+# print('写入完成')
 
+# 读写二进制文件
 
+# import base64
+# with open('aa.jpg', 'rb') as f:
+#     data = f.read()
+#     print('字节数:',len(data))
+#     print(base64.b64encode(data))
+#
+# with open('bb.jpg', 'wb') as f:
+#     f.write(data)
+#
+# print('写入完成')
 
+# 处理json数据
+import json
+# import csv2
 
-
-
-
-
-
-
-
-
+json_str = '{"name":"xx","age":"38","title":"嘿嘿"}'
+result = json.loads(json_str)
+print(result)
+print(type(result))
+print(result['name'])
+print(result['age'])
 
 
 
