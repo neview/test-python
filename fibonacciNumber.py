@@ -163,7 +163,9 @@ import time
 import shutil
 import os
 from fileinput import filename
+from linecache import cache
 from stat import filemode
+from types import MethodType
 
 from pygame.draw import lines
 
@@ -1687,52 +1689,159 @@ import time
 # print('写入完成')
 
 # 处理json数据
-import json
-# import csv2
+# import json
+# # import csv2
+#
+# json_str = '{"name":"xx","age":"38","title":"嘿嘿"}'
+# result = json.loads(json_str)
+# print(result)
+# print(type(result))
+# print(result['name'])
+# print(result['age'])
 
-json_str = '{"name":"xx","age":"38","title":"嘿嘿"}'
-result = json.loads(json_str)
-print(result)
-print(type(result))
-print(result['name'])
-print(result['age'])
+# 转义字符
+# print('My brother\'s name is \'007\'')
+
+# 原始字符
+# print(r'My brother\'s name is \'007\'')
+
+# str = 'hello123world'
+# print('he' in str)
+# print('her' in str)
+
+# 字符串是否只包含字母
+str = 'hello123world'
+# print(str.isalpha())
+
+# 字符串是否只包含字母和数字
+# print(str.isalnum())
+
+# 字符串是否只包含数字
+# print(str.isdecimal())
+
+# sentence = 'You go your way I will go mine'
+# words_list = sentence.split()
+# print(words_list)
+
+# print(range(10 // 2))
+# print(range(10 -1 , 10 // 2,-1))
+
+# import asyncio
+# import threading
+#
+# async def hello():
+#     print('%s: hello, world!' % threading.current_thread())
+#     await asyncio.sleep(2)
+#     print('%s: goodbye, world!' % threading.current_thread())
+#
+# loop = asyncio.get_event_loop()
+# tasks = [hello(),hello()]
+# loop.run_until_complete(asyncio.wait(tasks))
+# loop.close()
 
 
+# def log(func):
+#     def wrapper(*args, **kwargs):
+#         print('call %s():' % func.__name__)
+#         return func(*args, **kwargs)
+#     return wrapper
+#
+# @log
+# def now():
+#     print('2024-6-1')
+#
+# now()
+
+# import types
+#
+# def aa():
+#     print('aa')
+#
+# print(type(aa))
+# print(type(aa) == types.FunctionType)
 
 
+# class Aa():
+#     def __init__(self):
+#         self.a = 1
+#
+# obj = Aa()
+# print(hasattr(obj, 'x'))
+
+class Aa(object):
+    def __init__(self):
+        self.age = 1
+
+# def set_age2(self,*age):
+#     self.age = age
+#     print('set_age2',self.age)
+# s = Aa()
+# s.set_age = MethodType(set_age2,s)
+# print(s.set_age(1))
+# print(s.age)
+
+# import pdb
+# a = 0
+# print(1)
+# a = 2
+# pdb.set_trace()
+# print(a)
+
+# class Dict():
+#     def __init__(self,**kw):
+#         super().__init__(**kw)
+#
+#     def __getstate__(self,key):
+#         try:
+#             return self[key]
+#         except KeyError:
+#             raise AttributeError(f'key {key} not found in Dirt')
+#
+#     def __setstate__(self,key,value):
+#         self[key] = value
+#
+#     def __iter__(self):
+#         return iter(self.data)
+#
+#
+# import unittest
+#
+#
+# class TestDict(unittest.TestCase):
+#     def test_init(self):
+#         d = Dict(a=1, b='test')
+#         self.assertEqual(d.a, 1)
+#         self.assertEqual(d.b, 'test')
+#         self.assertTrue(isinstance(d, dict))
+#
+#     def test_key(self):
+#         d = Dict()
+#         d['key'] = 'value'
+#         self.assertEqual(d.key, 'value')
+#
+#     def test_attr(self):
+#         d = Dict()
+#         d.key = 'value'
+#         self.assertTrue('key' in d)
+#         self.assertEqual(d['key'], 'value')
+#
+#     def test_keyerror(self):
+#         d = Dict()
+#         with self.assertRaises(KeyError):
+#             value = d['empty']
+#
+#     def test_attrerror(self):
+#         d = Dict()
+#         with self.assertRaises(AttributeError):
+#             value = d.empty
+#
+# if __name__ == '__main__':
+#     unittest.main()
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+f = open('aa.txt', 'r')
+print(f.read())
+f.close()
 
 
 
