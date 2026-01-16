@@ -167,6 +167,7 @@ from linecache import cache
 from stat import filemode
 from types import MethodType
 
+import requests
 from pygame.draw import lines
 
 # seconds = time.time()
@@ -1993,35 +1994,57 @@ import pickle
 # t.join()
 # print('thread %s ended.' % threading.current_thread().name)
 
-import threading
-
-# 创建全局ThreadLocal对象:
-local_school = threading.local()
-
-
-def process_student():
-    # 获取当前线程关联的student:
-    std = local_school.student
-    print('Hello, %s (in %s)' % (std, threading.current_thread().name))
-
-
-def process_thread(name):
-    # 绑定ThreadLocal的student:
-    local_school.student = name
-    process_student()
-
-
-t1 = threading.Thread(target=process_thread, args=('Alice',), name='Thread-A')
-t2 = threading.Thread(target=process_thread, args=('Bob',), name='Thread-B')
-t1.start()
-t2.start()
-t1.join()
-t2.join()
-
-
+# import threading
+#
+# # 创建全局ThreadLocal对象:
+# local_school = threading.local()
+#
+#
+# def process_student():
+#     # 获取当前线程关联的student:
+#     std = local_school.student
+#     print('Hello, %s (in %s)' % (std, threading.current_thread().name))
+#
+#
+# def process_thread(name):
+#     # 绑定ThreadLocal的student:
+#     local_school.student = name
+#     process_student()
+#
+#
+# t1 = threading.Thread(target=process_thread, args=('Alice',), name='Thread-A')
+# t2 = threading.Thread(target=process_thread, args=('Bob',), name='Thread-B')
+# t1.start()
+# t2.start()
+# t1.join()
+# t2.join()
 
 
 
+# import threading
+# import requests
+#
+# def make_request(url):
+#     response = requests.get(url)
+#     print(f"Response from {url}: {response.status_code}")
+#
+# # 要请求的接口列表
+# urls = [
+#     "https://jsonplaceholder.typicode.com/posts/1",
+#     "https://jsonplaceholder.typicode.com/posts/2",
+#     "https://jsonplaceholder.typicode.com/posts/3"
+# ]
+#
+# # 创建并启动线程
+# threads = []
+# for url in urls:
+#     thread = threading.Thread(target=make_request, args=(url,))
+#     threads.append(thread)
+#     thread.start()
+#
+# # 等待所有线程完成
+# for thread in threads:
+#     thread.join()
 
 
 
