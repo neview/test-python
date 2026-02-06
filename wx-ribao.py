@@ -10,13 +10,17 @@ from datetime import datetime
 
 
 id=''
-strTime="2026-01-01"
-endTime="2026-02-01"
+strTime="2026-02-01"
+endTime="2026-02-03"
 conformList=[]
 index = 0
 key = ''
 cookies = ''
 template_id = ''
+
+# 格式化配置
+format_type = 2        # 输出格式: 1=带序号, 2=不带序号
+format_indent = False   # 是否行内缩进: True=缩进, False=不缩进
 
 def fileNoneDate():
     # 文件不存在
@@ -113,14 +117,14 @@ def deduplicate_and_sort_by_field(arr, field="A", keep_last=True, reverse=False)
 
     return sorted_list
 
-def format_data_and_copy(data, type=1, remove_duplicate=False):
+def format_data_and_copy(data, remove_duplicate=True):
     """
-    格式化数据并复制到剪贴板（支持控制是否带序号）
+    格式化数据并复制到剪贴板（支持控制是否带序号、行内缩进）
     :param data: 原始数据数组
-    :param type: 格式类型 1-带连续序号（默认） 2-不带序号
-    :param remove_duplicate: 是否去除list中的重复项（默认True）
+    :param remove_duplicate: 是否去除重复项（默认True）
     :return: 格式化后的文本
     """
+    global format_type, format_indent
 
     # 工具函数：去除原有序号，保留纯文本内容
     def remove_original_number(text):
@@ -131,9 +135,13 @@ def format_data_and_copy(data, type=1, remove_duplicate=False):
         return text.strip()
 
     # 校验type参数合法性
+    type = format_type
     if type not in [1, 2]:
         print("⚠️ type参数仅支持1（带序号）或2（不带序号），已默认使用type=1")
         type = 1
+
+    # 是否行内缩进
+    indent = format_indent
 
     formatted_text = ""
     for item in data:
@@ -161,15 +169,16 @@ def format_data_and_copy(data, type=1, remove_duplicate=False):
         else:
             list_items = [remove_original_number(li) for li in list_items]
 
-        # 步骤2：根据type生成不同格式的列表项
+        # 步骤2：根据type和indent生成不同格式的列表项
+        indent_str = "    " if indent else ""
         if type == 1:
-            # type=1：带连续序号（1、2、3...）
+            # type=1：带序号（1、2、3...）
             for idx, pure_text in enumerate(list_items, 1):
-                formatted_text += f"    {idx}、{pure_text}\n"
+                formatted_text += f"{indent_str}{idx}、{pure_text}\n"
         elif type == 2:
             # type=2：不带序号，仅纯文本
             for pure_text in list_items:
-                formatted_text += f"    {pure_text}\n"
+                formatted_text += f"{indent_str}{pure_text}\n"
 
         # 每个title后加空行分隔
         formatted_text += "\n"
@@ -214,7 +223,7 @@ def mergeData(data):
                         if item4['title'] == name:
                             item4['list'].append(item2)
 
-    format_data_and_copy(info, type=1)
+    format_data_and_copy(info)
 
 def requestNextList():
     global index
