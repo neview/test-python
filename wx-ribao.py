@@ -10,8 +10,8 @@ from datetime import datetime
 
 
 id=''
-strTime="2026-02-01"
-endTime="2026-02-03"
+strTime="2026-02-02"
+endTime="2026-02-08"
 conformList=[]
 index = 0
 key = ''
@@ -19,7 +19,7 @@ cookies = ''
 template_id = ''
 
 # 格式化配置
-format_type = 2        # 输出格式: 1=带序号, 2=不带序号
+format_type = 1        # 输出格式: 1=带序号, 2=不带序号
 format_indent = False   # 是否行内缩进: True=缩进, False=不缩进
 
 def fileNoneDate():
