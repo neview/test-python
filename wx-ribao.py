@@ -10,8 +10,8 @@ from datetime import datetime
 
 
 id=''
-strTime="2026-02-02"
-endTime="2026-02-08"
+strTime="2026-02-01"
+endTime="2026-03-01"
 conformList=[]
 index = 0
 key = ''
@@ -19,7 +19,7 @@ cookies = ''
 template_id = ''
 
 # 格式化配置
-format_type = 1        # 输出格式: 1=带序号, 2=不带序号
+format_type = 2        # 输出格式: 1=带序号, 2=不带序号
 format_indent = False   # 是否行内缩进: True=缩进, False=不缩进
 
 def fileNoneDate():
@@ -270,6 +270,8 @@ def getReportInfo(result):
         requestNextList()
     else:
         print('error:', response)
+        with open('cookies.txt', 'w', encoding='utf-8') as f:
+            pass  # 不写入任何内容，文件即变为空
 
 if __name__ == "__main__":
     url = "https://doc.weixin.qq.com/forms/j/AKUAmwcxAA4AMcALQaMABgCNxhNl1H9Mj_fork?page=5&_cef_tabid_=9f85d2b15d5507808aacc7beca28b7b7#/journal-answer/8?journaluuid=5tnb2GLSq3uGsirYomG29gnFa1Ew5qBh8eBREjWL4ARBFC71eYfN9QMQ9vboGRmWRM"
